@@ -195,7 +195,7 @@ angular.module('angular-svg-round-progressbar').directive('roundProgress', ['$wi
                 return attrs.hasOwnProperty(name);
             }
         },
-        template: function(element){
+        template: function(element, attr){
             var parent = element.parent();
             var directiveName = 'round-progress';
             var template = [
@@ -205,6 +205,9 @@ angular.module('angular-svg-round-progressbar').directive('roundProgress', ['$wi
                     '<g ng-transclude></g>',
                 '</svg>'
             ];
+            
+            //Adding gradient if attr 'gradientDef' present
+            attr.gradientDef && template.splice(1, 0, attr.gradientDef);
 
             while(
                 parent.length &&
